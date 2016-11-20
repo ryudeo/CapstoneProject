@@ -1,0 +1,181 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorDivider"
+            tools:context="ryudeo.capstoneproject.Fragments.DietBriefingFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical">
+
+        <FrameLayout android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginBottom="8dp">
+
+            <ImageView android:layout_width="match_parent"
+                       android:layout_height="140dp"
+                       android:scaleType="centerCrop"
+                       android:src="@drawable/bg_weight"/>
+
+            <View android:layout_width="match_parent" android:layout_height="140dp"
+                  android:background="@color/colorBlackTransparentOp80"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="@color/colorBlackTransparent"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:text="몸무게를 측정하세요"
+                          android:textColor="@color/colorTextIcon"
+                          android:textSize="16sp"
+                          android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="몸무게를 측정하세요."
+                    android:textColor="@color/colorTextIcon"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <FrameLayout android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginBottom="8dp">
+
+            <ImageView android:layout_width="match_parent"
+                       android:layout_height="140dp"
+                       android:scaleType="centerCrop"
+                       android:src="@drawable/bg_water"/>
+
+            <View android:id="@+id/view" android:layout_width="match_parent"
+                  android:layout_height="140dp"
+                  android:background="@color/colorBlackTransparentOp80"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="@color/colorBlackTransparent"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:text="물 쳐드신거 확인하세요"
+                          android:textColor="@color/colorTextIcon"
+                          android:textSize="16sp"
+                          android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="많이마실수록 좋다네~"
+                    android:textColor="@color/colorTextIcon"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+
+
+        </FrameLayout>
+
+        <FrameLayout android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginBottom="8dp">
+
+            <ImageView android:layout_width="match_parent"
+                       android:layout_height="140dp"
+                       android:scaleType="centerCrop"
+                       android:src="@drawable/bg_exercise"/>
+
+            <View android:layout_width="match_parent" android:layout_height="140dp"
+                  android:background="@color/colorBlackTransparentOp80"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="@color/colorBlackTransparent"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:text="운동을 열심히 해봐요"
+                          android:textColor="@color/colorTextIcon"
+                          android:textSize="16sp"
+                          android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="배가 쏟아지지 않도록.."
+                    android:textColor="@color/colorTextIcon"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <FrameLayout android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_marginBottom="8dp">
+
+            <ImageView android:layout_width="match_parent"
+                       android:layout_height="140dp"
+                       android:scaleType="centerCrop"
+                       android:src="@drawable/bg_food"/>
+
+            <View android:layout_width="match_parent" android:layout_height="140dp"
+                  android:background="@color/colorBlackTransparentOp80"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="@color/colorBlackTransparent"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:text="하루섭취량을 기록하세요"
+                          android:textColor="@color/colorTextIcon"
+                          android:textSize="16sp"
+                          android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="몸무게를 측정하세요."
+                    android:textColor="@color/colorTextIcon"
+                    android:textSize="12sp"/>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>
+
+

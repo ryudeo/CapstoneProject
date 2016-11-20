@@ -7,4 +7,8 @@
     <color name="colorSecondaryText">#757575</color>
     <color name="colorPrimaryText">#212121</color>
     <color name="colorDivider">#BDBDBD</color>
+    <color name="colorTextIcon">#ffffffff</color>
+
+    <color name="colorBlackTransparent">#8c212121</color>
+    <color name="colorBlackTransparentOp80">#505c5c5c</color>
 </resources>

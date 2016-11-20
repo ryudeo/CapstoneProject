@@ -1,18 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+
+
+<LinearLayout
     android:id="@+id/activity_main"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="ryudeo.capstoneproject.MainActivity">
+    android:orientation="vertical"
+    tools:context="ryudeo.capstoneproject.Activities.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:title="뭐라하지?"/>
+
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"/>
-</RelativeLayout>
+        app:tabBackground="@color/colorPrimary"
+        app:tabIndicatorColor="@color/colorTextIcon"
+        app:tabSelectedTextColor="@color/colorTextIcon"
+        app:tabTextColor="@color/colorTextIcon"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorDivider"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+
+</LinearLayout>
