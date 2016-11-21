@@ -1,46 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
-<LinearLayout
-    android:id="@+id/activity_main"
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="ryudeo.capstoneproject.Activities.MainActivity">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:layout_width="match_parent">
 
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    <LinearLayout
+        android:id="@+id/activity_main"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark"
-        app:title="뭐라하지?"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="ryudeo.capstoneproject.Activities.MainActivity">
 
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tabbar"
-        android:layout_width="match_parent"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark"
+            app:title="뭐라하지?" />
+
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabBackground="@color/colorPrimary"
+            app:tabIndicatorColor="@color/colorTextIcon"
+            app:tabSelectedTextColor="@color/colorTextIcon"
+            app:tabTextColor="@color/colorTextIcon" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorDivider" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    </LinearLayout>
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/multiple_actions"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:tabBackground="@color/colorPrimary"
-        app:tabIndicatorColor="@color/colorTextIcon"
-        app:tabSelectedTextColor="@color/colorTextIcon"
-        app:tabTextColor="@color/colorTextIcon"/>
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        fab:fab_addButtonColorNormal="@color/white"
+        fab:fab_addButtonColorPressed="@color/white_pressed"
+        fab:fab_addButtonPlusIconColor="@color/half_black"
+        fab:fab_labelStyle="@style/menu_labels_style"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorDivider"/>
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/action_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/white"
+            fab:fab_title="몸무게 입력"
+            fab:fab_colorPressed="@color/white_pressed"/>
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/action_water"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/white"
+            fab:fab_title="물 섭취량 입력"
+            fab:fab_colorPressed="@color/white_pressed"/>
 
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/action_exercise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/white"
+            fab:fab_title="운동량 입력"
+            fab:fab_colorPressed="@color/white_pressed"/>
 
-</LinearLayout>
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/action_food"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/white"
+            fab:fab_title="칼로리 섭취량 입력"
+            fab:fab_colorPressed="@color/white_pressed"/>
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+</RelativeLayout>
