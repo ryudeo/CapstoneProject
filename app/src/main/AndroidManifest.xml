@@ -18,7 +18,12 @@
         <activity android:name=".Activities.WeightBriefActivity" />
         <activity android:name=".Activities.WaterBriefActivity" />
         <activity android:name=".Activities.ExerciseBriefActivity" />
-        <activity android:name=".Activities.FoodBriefActivity"></activity>
+        <activity android:name=".Activities.FoodBriefActivity" />
+        <activity android:name=".Activities.FabWeightActivity" />
+        <activity android:name=".Activities.FabWaterActivity" />
+        <activity android:name=".Activities.FabExerciseActivity" />
+        <activity android:name=".Activities.FabFoodActivity" />
+        <activity android:name=".Activities.FabProfileActivity"></activity>
     </application>
 
 </manifest>

@@ -1,10 +1,16 @@
 package ryudeo.capstoneproject.Activities;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+
+import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         setUpTabLayout();
+        setUpFloatingActionButton();
     }
 
     private void setUpTabLayout() {
@@ -47,5 +54,62 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabbar);
         tabLayout.setupWithViewPager(pager);
 
+    }
+
+    private void setUpFloatingActionButton() {
+
+        FloatingActionButton actionProfile = (FloatingActionButton)findViewById(R.id.action_profile);
+        FloatingActionButton actionWeight = (FloatingActionButton)findViewById(R.id.action_weight);
+        FloatingActionButton actionWater = (FloatingActionButton)findViewById(R.id.action_water);
+        FloatingActionButton actionExercise = (FloatingActionButton)findViewById(R.id.action_exercise);
+        FloatingActionButton actionFood = (FloatingActionButton)findViewById(R.id.action_food);
+
+        actionProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(MainActivity.this, FabProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        actionWeight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(MainActivity.this, FabWeightActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        actionWater.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(MainActivity.this, FabWaterActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+        actionExercise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(MainActivity.this, FabExerciseActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+        actionFood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(MainActivity.this, FabFoodActivity.class);
+                startActivity(intent);
+
+            }
+        });
     }
 }
