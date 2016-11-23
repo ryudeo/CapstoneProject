@@ -10,6 +10,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.tibolte.agendacalendarview.AgendaCalendarView;
+import com.github.tibolte.agendacalendarview.CalendarPickerController;
+import com.github.tibolte.agendacalendarview.models.CalendarEvent;
+import com.github.tibolte.agendacalendarview.models.DayItem;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Locale;
+
 import ryudeo.capstoneproject.Activities.ExerciseBriefActivity;
 import ryudeo.capstoneproject.Activities.FoodBriefActivity;
 import ryudeo.capstoneproject.Activities.WaterBriefActivity;
@@ -47,6 +57,14 @@ public class DietBriefingFragment extends Fragment{
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_diet_briefing,container , false);
+        setUpActions(rootView);
+
+        return rootView;
+    }
+
+
+
+    private void setUpActions(View rootView) {
 
         ViewGroup weightFrame = (ViewGroup)rootView.findViewById(R.id.weightFrame);
         View waterFrame = rootView.findViewById(R.id.waterFrame);
@@ -93,10 +111,6 @@ public class DietBriefingFragment extends Fragment{
 
             }
         });
-
-
-        // Inflate the layout for this fragment
-        return rootView;
     }
 
 

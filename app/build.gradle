@@ -33,5 +33,10 @@ dependencies {
 
     compile 'com.shawnlin:number-picker:2.2.0' //For custom number picker.
 
+    compile 'com.github.tibolte:agendacalendarview:1.0.4' //For Custom Calendar
+
+    compile 'com.github.lecho:hellocharts-library:1.5.8@aar' //Chart
+
     testCompile 'junit:junit:4.12'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
 }

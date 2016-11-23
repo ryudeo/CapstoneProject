@@ -7,17 +7,45 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context="ryudeo.capstoneproject.Activities.WeightBriefActivity">
+
+
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:id="@+id/TopFrame">
+
+            <TextView
+                android:text="Weight Brief Activity"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/textView8" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:id="@+id/MidFrame">
+
+            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="lecho.lib.hellocharts.samples.LineChartActivity"
+                tools:ignore="MergeRootFrame" />
+
+        </FrameLayout>
+
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="WeightBriefActivity"/>
+            android:id="@+id/BottomFrame">
 
-
+        </FrameLayout>
     </LinearLayout>
-
-
 </android.support.design.widget.CoordinatorLayout>

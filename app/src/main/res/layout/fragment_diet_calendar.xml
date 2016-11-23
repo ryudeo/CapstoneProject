@@ -1,13 +1,21 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="ryudeo.capstoneproject.Fragments.DietCalendarFragment">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:agendaCalendar="http://schemas.android.com/apk/res-auto"
+    tools:context="ryudeo.capstoneproject.Fragments.DietCalendarFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.github.tibolte.agendacalendarview.AgendaCalendarView
+        android:id="@+id/agenda_calendar_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"/>
+        agendaCalendar:agendaCurrentDayTextColor="@color/colorPrimaryDark"
+        agendaCalendar:calendarColor="@color/colorPrimary"
+        agendaCalendar:calendarCurrentDayTextColor="@color/colorAccent"
+        agendaCalendar:calendarDayTextColor="@color/white"
+        agendaCalendar:calendarHeaderColor="@color/colorPrimaryDark"
+        agendaCalendar:calendarPastDayTextColor="@color/colorPrimaryLight"
+        agendaCalendar:fabColor="@color/colorPrimary" />
+
 
 </FrameLayout>
