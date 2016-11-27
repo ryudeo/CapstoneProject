@@ -58,20 +58,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void setUpFloatingActionButton() {
 
-        FloatingActionButton actionProfile = (FloatingActionButton)findViewById(R.id.action_profile);
         FloatingActionButton actionWeight = (FloatingActionButton)findViewById(R.id.action_weight);
         FloatingActionButton actionWater = (FloatingActionButton)findViewById(R.id.action_water);
         FloatingActionButton actionExercise = (FloatingActionButton)findViewById(R.id.action_exercise);
         FloatingActionButton actionFood = (FloatingActionButton)findViewById(R.id.action_food);
-
-        actionProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(MainActivity.this, FabProfileActivity.class);
-                startActivity(intent);
-            }
-        });
 
         actionWeight.setOnClickListener(new View.OnClickListener() {
             @Override
