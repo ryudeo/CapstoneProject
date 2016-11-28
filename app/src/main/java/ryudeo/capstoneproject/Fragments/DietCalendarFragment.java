@@ -4,6 +4,7 @@ package ryudeo.capstoneproject.Fragments;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,8 @@ import ryudeo.capstoneproject.Database.Cols;
 import ryudeo.capstoneproject.Database.DbAdapter;
 import ryudeo.capstoneproject.R;
 import ryudeo.capstoneproject.Utils;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -83,6 +86,8 @@ public class DietCalendarFragment extends Fragment {
         mCursor = mDbAdapter.fetchAll();
         mCursor.moveToFirst();
 
+        //Log.w(TAG, "setUpCalendar: 반복문 못 들어갔다 샹년아");
+
         while(!mCursor.moveToNext()) {
 
             String type = mCursor.getString(mCursor.getColumnIndex("type"));
@@ -92,8 +97,9 @@ public class DietCalendarFragment extends Fragment {
             colsList.add(new Cols(type, quantity,timeStamp));
             BaseCalendarEvent event = Utils.makeBaseCalendarEvent(getActivity(), Utils.EventType.valueOf(type), quantity, timeStamp);
             eventList.add(event);
-        }
 
+        }
+        //Log.w(TAG, "setUpCalendar: 반복문 갔다왔다 샹년아");
 //        BaseCalendarEvent event1 = Utils.makeBaseCalendarEvent(getActivity(), Utils.EventType.Water, 100, System.currentTimeMillis());
 //        BaseCalendarEvent event2 = Utils.makeBaseCalendarEvent(getActivity(), Utils.EventType.Food, 100, System.currentTimeMillis());
 //        BaseCalendarEvent event3 = Utils.makeBaseCalendarEvent(getActivity(), Utils.EventType.Exercise, 100, System.currentTimeMillis());

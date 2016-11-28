@@ -16,8 +16,8 @@ import android.util.Log;
 public class DbAdapter {
 
     public static final String COL_ROWID = "_id";
-    public static final String COL_TYPE = "name";
-    public static final String COL_QUANTITY = "phone";
+    public static final String COL_TYPE = "type";
+    public static final String COL_QUANTITY = "quantity";
     public static final String COL_TIMESTAMP = "timeStamp";
 
     private static final String TAG = "DbAdapter"; //log tag
@@ -25,8 +25,8 @@ public class DbAdapter {
     private SQLiteDatabase mDb;
 
     private static final String DATABASE_CREATE =
-            "create table data (_id integer primary key autoincrement,"+
-                    "name text not null, phone text not null);";
+            "create table daily (_id integer primary key autoincrement,"+
+                    "type text not null, quantity integer not null, timeStamp real not null);";
 
     private static final String DATABASE_NAME = "data.db";
     private static final String DATABASE_TABLE = "daily";
