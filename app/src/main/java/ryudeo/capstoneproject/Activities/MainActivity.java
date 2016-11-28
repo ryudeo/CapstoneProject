@@ -1,6 +1,5 @@
 package ryudeo.capstoneproject.Activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -10,15 +9,17 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
-import com.getbase.floatingactionbutton.FloatingActionsMenu;
+import com.github.tibolte.agendacalendarview.models.BaseCalendarEvent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 
 import ryudeo.capstoneproject.Adapters.TabPagerAdapter;
 import ryudeo.capstoneproject.Fragments.DietBriefingFragment;
 import ryudeo.capstoneproject.Fragments.DietCalendarFragment;
 import ryudeo.capstoneproject.R;
+import ryudeo.capstoneproject.Utils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
 
         setUpTabLayout();
         setUpFloatingActionButton();
+
+
+
     }
 
     private void setUpTabLayout() {
