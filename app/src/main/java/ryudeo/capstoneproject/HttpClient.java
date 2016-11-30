@@ -75,6 +75,7 @@ public class HttpClient {
                         if (jsonObject.has("kcal")) {
 
                             String kcal = jsonObject.getString("kcal");
+                            kcal = kcal.replaceAll("\\s+", "");
                             foodInfo.setKcal(kcal);
                         }
 
