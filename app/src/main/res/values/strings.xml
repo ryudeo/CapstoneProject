@@ -15,4 +15,23 @@
     <!-- For Custom Number Picker -->
 
     <string name="number_picker_formatter">%02d</string>
+
+    <!-- 검색 모듈 -->
+    <string name="lorem_1">
+        콜렐랄라왈랄라랄! 콜렐랄라랩갓랩갓 아노미니리아ㅓㅁ눙나나 랩갓랩갓
+        ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ쉬벌래미
+    </string>
+    <string name="lorem_2">
+        Phasellus congue tincidunt lectus, at dignissim ligula maximus eu.
+        Quisque interdum nunc eget tellus bibendum suscipit. Phasellus feugiat ultricies posuere.
+    </string>
+    <string name="lorem_3">
+        Sed pellentesque placerat quam, ut ultricies turpis feugiat a.
+        Aliquam a volutpat risus.
+    </string>
+
+    <string name="search_hint">
+        검색어를 입력하세요.
+    </string>
+
 </resources>

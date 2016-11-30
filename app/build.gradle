@@ -24,19 +24,17 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.android.support:support-v4:24.2.1'
-
     compile 'com.android.support:design:24.2.1'
-
-    compile 'com.getbase:floatingactionbutton:1.10.1' //For custom FAB.
-
-    compile 'com.shawnlin:number-picker:2.2.0' //For custom number picker.
-
-    compile 'com.github.tibolte:agendacalendarview:1.0.4' //For Custom Calendar
-
-    compile 'com.github.lecho:hellocharts-library:1.5.8@aar' //Chart
-
-    testCompile 'junit:junit:4.12'
+    compile 'com.getbase:floatingactionbutton:1.10.1' //플로팅버튼
+    compile 'com.shawnlin:number-picker:2.2.0' //넘버 피커
+    compile 'com.github.tibolte:agendacalendarview:1.0.4' //캘린더
+    compile 'com.github.lecho:hellocharts-library:1.5.8@aar' //차트
+    compile 'com.squareup.okhttp3:okhttp:3.2.0'
+    compile 'xyz.sahildave:searchviewlayout:0.6' //서치뷰
+    compile 'com.github.thorbenprimke:realm-searchview:0.9.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
+    testCompile 'junit:junit:4.12'
 }

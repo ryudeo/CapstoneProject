@@ -80,33 +80,27 @@ public class DietCalendarFragment extends Fragment {
         minDate.set(Calendar.DAY_OF_MONTH, 1);
         maxDate.add(Calendar.YEAR, 1);
 
-        List<CalendarEvent> eventList = new ArrayList<>();
-        List<Cols> colsList = new ArrayList<>();
+        List<CalendarEvent> eventList = new ArrayList<>(); //이벤트 어레이리스트 생성
+        List<Cols> colsList = new ArrayList<>(); //레코드 어레이리스트 생성
+        BaseCalendarEvent event; // 캘린더 이벤트 객체 선언
 
-        mCursor = mDbAdapter.fetchAll();
-        mCursor.moveToFirst();
+        mCursor = mDbAdapter.open().fetchAll(); //모든 레코드를 커서로
+        mCursor.moveToFirst(); // 커서를 맨 앞으로
 
-        //Log.w(TAG, "setUpCalendar: 반복문 못 들어갔다 샹년아");
+        while(mCursor.moveToNext()) { //커서를 다음으로 옮기며 모든 레코드 순회
 
-        while(!mCursor.moveToNext()) {
+            String type = mCursor.getString(mCursor.getColumnIndex(DbAdapter.COL_TYPE)); //타입 컬럼값
+            int quantity = mCursor.getInt(mCursor.getColumnIndex(DbAdapter.COL_QUANTITY));//양 컬럼값
+            long timeStamp = mCursor.getLong(mCursor.getColumnIndex(DbAdapter.COL_TIMESTAMP));//타임스탬프 컬럼값
 
-            String type = mCursor.getString(mCursor.getColumnIndex("type"));
-            int quantity = mCursor.getInt(mCursor.getColumnIndex("quantity"));
-            long timeStamp = mCursor.getLong(mCursor.getColumnIndex("timeStamp"));
+            colsList.add(new Cols(type, quantity,timeStamp)); //레코드 어레이리스트에 추가
+            event = Utils.makeBaseCalendarEvent(getActivity(), Utils.EventType.valueOf(type), quantity, timeStamp); //이벤트 생성
 
-            colsList.add(new Cols(type, quantity,timeStamp));
-            BaseCalendarEvent event = Utils.makeBaseCalendarEvent(getActivity(), Utils.EventType.valueOf(type), quantity, timeStamp);
-            eventList.add(event);
-
+            if(!(type == "Weight")){ //Weight type 제외
+                eventList.add(event); //이벤트 어레이리스트에 추가
+            }
         }
-        //Log.w(TAG, "setUpCalendar: 반복문 갔다왔다 샹년아");
-//        BaseCalendarEvent event1 = Utils.makeBaseCalendarEvent(getActivity(), Utils.EventType.Water, 100, System.currentTimeMillis());
-//        BaseCalendarEvent event2 = Utils.makeBaseCalendarEvent(getActivity(), Utils.EventType.Food, 100, System.currentTimeMillis());
-//        BaseCalendarEvent event3 = Utils.makeBaseCalendarEvent(getActivity(), Utils.EventType.Exercise, 100, System.currentTimeMillis());
-//
-//        eventList.add(event1);
-//        eventList.add(event2);
-//        eventList.add(event3);
+        mDbAdapter.close(); //데이터베이스 닫음
 
         agendaCalendarView.init(eventList, minDate, maxDate, Locale.getDefault(), new CalendarPickerController() {
             @Override

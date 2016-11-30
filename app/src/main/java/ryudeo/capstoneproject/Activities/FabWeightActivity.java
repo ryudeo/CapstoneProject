@@ -17,9 +17,7 @@ import ryudeo.capstoneproject.R;
 public class FabWeightActivity extends AppCompatActivity {
 
     private DbAdapter mDbAdapter;
-    private Cursor mCursor;
-    private Cols cols;
-    private ArrayList<Cols> colsList;
+    //private ArrayList<Cols> colsList;
     private int weight;
 
     @Override
@@ -27,7 +25,8 @@ public class FabWeightActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fab_weight);
 
-        colsList = new ArrayList<Cols>();
+        //colsList = new ArrayList<Cols>();
+        mDbAdapter = new DbAdapter(this);
 
         final NumberPicker numberPicker = (NumberPicker) findViewById(R.id.weight_number_picker);
 
@@ -38,8 +37,7 @@ public class FabWeightActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 weight = numberPicker.getValue(); //get weight value what user choose.
-                mDbAdapter.open();
-                mDbAdapter.insertData("Weight", weight);
+                mDbAdapter.open().insertData("Weight", weight);
                 mDbAdapter.close();
             }
         });
