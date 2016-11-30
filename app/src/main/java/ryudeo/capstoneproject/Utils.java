@@ -104,14 +104,19 @@ public class Utils {
         return calendar;
     }
 
-    public static BaseCalendarEvent makeBaseCalendarEvent (Context context, EventType eventType, int quantity, long timeStamp) {
+    public static BaseCalendarEvent makeBaseCalendarEvent (Context context, EventType eventType, String name, int quantity, long timeStamp) {
 
         String title = Utils.getEventTitle(eventType);
         String desc = Utils.getEventDescription(eventType, quantity);
         int color = Utils.getEventColor(context, eventType);
         Calendar startTime = Utils.getEventCalendarDate(timeStamp);
 
-        return new BaseCalendarEvent(title, desc, "", color, startTime, startTime, true);
+        if (eventType == EventType.Food) {
+
+            title = name;
+        }
+
+        return new BaseCalendarEvent(title, desc, desc, color, startTime, startTime, true);
     }
 
 }

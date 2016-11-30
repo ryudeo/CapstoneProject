@@ -33,7 +33,7 @@ public class FabWaterActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 int quantity = Integer.parseInt(waterEditText.getText().toString());
-                mDbAdapter.open().insertData("Water", quantity); //Water type을 db에 insert
+                mDbAdapter.open().insertData("Water", "",quantity); //Water type을 db에 insert
                 mDbAdapter.close();
             }
         });

@@ -23,16 +23,22 @@ public class SearchItemListAdapter extends RecyclerView.Adapter<SearchItemListAd
 {
     private Context mContext;
     private ArrayList<FoodInfo> mFoodInfoList;
-    private ArrayList<FoodInfo> mFoodInfoListResult;
+    private ListItemClickCallback mListItemClickCallback;
 
     private int lastPosition = -1;
+
+    public void setListItemClickCallback(ListItemClickCallback listItemClickCallback) {
+        mListItemClickCallback = listItemClickCallback;
+    }
+
+    public void setFoodInfoList(ArrayList<FoodInfo> foodInfoList) {
+        mFoodInfoList = foodInfoList;
+    }
 
     public SearchItemListAdapter(ArrayList<FoodInfo> items, Context mContext)
     {
         this.mContext = mContext;
-        this.mFoodInfoListResult = items;
-        mFoodInfoList = new ArrayList<>();
-        mFoodInfoList.addAll(mFoodInfoListResult);
+        this.mFoodInfoList = items;
     }
 
     @Override
@@ -48,8 +54,8 @@ public class SearchItemListAdapter extends RecyclerView.Adapter<SearchItemListAd
 
         FoodInfo foodInfo = mFoodInfoList.get(position);
 
-        holder.cardTitleTextView.setText(foodInfo.getName());
-        holder.cardDetailsTextView.setText(Integer.toString(foodInfo.getQuantity()));
+        holder.cardTitleTextView.setText(foodInfo.getName() + " (" + foodInfo.getEa() + ")");
+        holder.cardDetailsTextView.setText(foodInfo.getKcal());
     }
 
     @Override
@@ -66,6 +72,15 @@ public class SearchItemListAdapter extends RecyclerView.Adapter<SearchItemListAd
             super(view);
             cardTitleTextView = (TextView)view.findViewById(R.id.card_title);
             cardDetailsTextView = (TextView)view.findViewById(R.id.card_details);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if (mListItemClickCallback != null) {
+                        mListItemClickCallback.onItemClick(getAdapterPosition());
+                    }
+                }
+            });
         }
     }
 
@@ -80,20 +95,9 @@ public class SearchItemListAdapter extends RecyclerView.Adapter<SearchItemListAd
         }
     }
 
-    public void filter(String charText) {
-        charText = charText.toLowerCase(Locale.getDefault());
-        mFoodInfoListResult.clear();
-        if (charText.length() == 0) {
-            mFoodInfoListResult.addAll(mFoodInfoList);
-        } else {
-            for (FoodInfo foodInfo : mFoodInfoList) {
-                if (foodInfo.getName().toLowerCase(Locale.getDefault()).contains(charText)) {
-                    mFoodInfoListResult.add(foodInfo);
-                }
-            }
-        }
-        notifyDataSetChanged();
-    }
+    public interface ListItemClickCallback {
 
+        void onItemClick(int position);
+    }
 
 }

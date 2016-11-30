@@ -1,6 +1,15 @@
 package ryudeo.capstoneproject;
 
+import android.content.Context;
+import android.net.Uri;
 import android.util.Log;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -8,13 +17,13 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 import ryudeo.capstoneproject.Database.FoodInfo;
 
 /**
@@ -23,6 +32,7 @@ import ryudeo.capstoneproject.Database.FoodInfo;
 
 public class HttpClient {
 
+    private static final String LOG_TAG = HttpClient.class.getSimpleName();
     private static final String ROOT_URL = "http://api.dbstore.or.kr:8880/foodinfo";
     private static final String SUB_URL_SEARCH = "/search.do";
     private static final String UID = "KK7ZMV34";
@@ -31,79 +41,86 @@ public class HttpClient {
     private static final String HEADER_AUTH_KEY = "x-waple-authorization";
 
     private OkHttpClient mClient;
+    private Context mContext;
 
-    public HttpClient() {
+    public HttpClient(Context context) {
 
         mClient = new OkHttpClient();
+        mContext = context;
     }
 
     public void requestFoodListWithSearchQuery(String searchQuery, final HttpClientCallback callback) {
 
+        String url = Uri.parse(ROOT_URL + SUB_URL_SEARCH).buildUpon()
+                .appendQueryParameter("uid", UID)
+                .appendQueryParameter("w", searchQuery).build().toString();
 
-        HttpUrl.Builder urlBuilder = HttpUrl.parse(ROOT_URL + SUB_URL_SEARCH).newBuilder()
-                .addQueryParameter("uid", UID)
-                .addQueryParameter("w", searchQuery);
-
-        Request request = new Request.Builder()
-                .header(HEADER_AUTH_KEY, HEADER_AUTH_VALUE)
-                .url(urlBuilder.build())
-                .build();
-
-        mClient.newCall(request).enqueue(new Callback() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
-            public void onFailure(Call call, IOException e) {
+            public void onResponse(JSONObject response) {
 
-                callback.onFail("Error");
-                Log.i("Error : ", "error" );
-            }
+                ArrayList<FoodInfo> foodInfos = new ArrayList<>();
 
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
+                try {
+                    JSONArray foodList = response.getJSONArray("food_list");
 
-                if (response.isSuccessful()) {
-                    Log.i("Response : ", response.body().string());
+                    for (int i = 0; i < foodList.length(); i++) {
 
-                    ArrayList<FoodInfo> foodInfos = new ArrayList<FoodInfo>();
-                    try {
-                        JSONObject resJson = new JSONObject(response.body().string());
+                        JSONObject jsonObject = foodList.getJSONObject(i);
+                        FoodInfo foodInfo = new FoodInfo();
+                        String foodName = jsonObject.getString("food_name");
+                        foodName = foodName.replaceAll("\\s+", "");
 
-                        JSONArray foodList = resJson.getJSONArray("food_list");
+                        foodInfo.setName(foodName);
+                        if (jsonObject.has("kcal")) {
 
-
-                        for (int i = 0; i < foodList.length(); i++) {
-
-                            JSONObject foodJson = foodList.getJSONObject(i);
-                            FoodInfo foodInfo = new FoodInfo();
-
-                            String name = foodJson.getString("food_name");
-
-                            if (foodJson.has("kcal")) {
-
-                                String kcal = foodJson.getString("kcal");
-                                foodInfo.setKcal(kcal);
-
-                            }
-
-
-                            foodInfo.setName(name);
-                            foodInfos.add(foodInfo);
+                            String kcal = jsonObject.getString("kcal");
+                            foodInfo.setKcal(kcal);
                         }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+
+                        String ea = jsonObject.getString("ing_first");
+                        foodInfo.setEa(ea);
+
+                        foodInfos.add(foodInfo);
+
                     }
-
-                    callback.onSuccess(foodInfos);
-                }
-                else {
-
-                    callback.onFail("Error");
+                    Log.i(LOG_TAG, foodList.toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
 
+                callback.onSuccess(foodInfos);
 
             }
-        });
-    }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
 
+                Log.i(LOG_TAG, "onErrorResponse : " + error.networkResponse.toString());
+
+                callback.onFail(error.networkResponse.toString());
+            }
+        }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+
+
+                Map<String, String> headers = new HashMap<>();
+                headers.put(HEADER_AUTH_KEY, HEADER_AUTH_VALUE);
+                return headers;
+
+            }
+
+            @Override
+            protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
+                return super.parseNetworkResponse(response);
+            }
+        };
+
+        RequestQueueManager.getInstance(mContext).getRequestQueue().add(jsonObjectRequest);
+
+    }
 
     public interface HttpClientCallback {
 

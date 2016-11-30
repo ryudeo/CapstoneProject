@@ -23,6 +23,8 @@ import ryudeo.capstoneproject.Utils;
 
 public class MainActivity extends AppCompatActivity {
 
+    private DietCalendarFragment mDietCalendarFragment;
+    private DietBriefingFragment mDietBriefingFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +38,21 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+    }
+
     private void setUpTabLayout() {
 
         ArrayList<Fragment> fragments = new ArrayList<>();
         ArrayList<String> tabTitles = new ArrayList<>();
 
-        fragments.add(DietCalendarFragment.newInstance());
-        fragments.add(DietBriefingFragment.newInstance());
+        mDietCalendarFragment = DietCalendarFragment.newInstance();
+        mDietBriefingFragment = DietBriefingFragment.newInstance();
+        fragments.add(mDietCalendarFragment);
+        fragments.add(mDietBriefingFragment);
 
 
         String[] titles = new String[]{"캘린더", "브리핑"};

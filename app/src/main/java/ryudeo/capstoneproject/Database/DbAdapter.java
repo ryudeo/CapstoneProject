@@ -18,6 +18,7 @@ public class DbAdapter {
     public static final String COL_ROWID = "_id";
     public static final String COL_TYPE = "type";
     public static final String COL_QUANTITY = "quantity";
+    public static final String COL_NAME = "name";
     public static final String COL_TIMESTAMP = "timeStamp";
 
     private static final String TAG = "DbAdapter"; //log tag
@@ -26,7 +27,7 @@ public class DbAdapter {
 
     private static final String DATABASE_CREATE =
             "create table daily (_id integer primary key autoincrement,"+
-                    "type text not null, quantity integer not null, timeStamp real not null);";
+                    "type text not null, quantity integer not null, name text, timeStamp real not null);";
 
     private static final String DATABASE_NAME = "data.db";
     private static final String DATABASE_TABLE = "daily";
@@ -69,17 +70,18 @@ public class DbAdapter {
         mDbHelper.close();
     }
 
-    public long insertData(String type, int quantity){
+    public long insertData(String type, String name, int quantity){
         ContentValues values = new ContentValues();
         values.put(COL_TYPE, type);
         values.put(COL_QUANTITY, quantity);
+        values.put(COL_NAME, name);
         values.put(COL_TIMESTAMP, System.currentTimeMillis());
 
         return mDb.insert(DATABASE_TABLE, null, values);
     }
 
     public Cursor fetchAll(){
-        return mDb.query(DATABASE_TABLE, new String[]{COL_ROWID, COL_TYPE, COL_QUANTITY, COL_TIMESTAMP}, null, null, null, null, null);
+        return mDb.query(DATABASE_TABLE, new String[]{COL_ROWID, COL_TYPE, COL_NAME, COL_QUANTITY, COL_TIMESTAMP}, null, null, null, null, null);
 
     }
 

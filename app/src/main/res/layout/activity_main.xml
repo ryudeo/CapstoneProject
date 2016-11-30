@@ -89,6 +89,8 @@
 
             fab:fab_colorPressed="@color/white_pressed"/>
 
+
+
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/action_food"
             android:layout_width="wrap_content"
@@ -96,6 +98,7 @@
             fab:fab_colorNormal="@color/white"
             fab:fab_title="칼로리 섭취량 입력"
             fab:fab_colorPressed="@color/white_pressed"/>
+
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 </RelativeLayout>

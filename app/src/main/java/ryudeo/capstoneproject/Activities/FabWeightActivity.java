@@ -37,7 +37,7 @@ public class FabWeightActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 weight = numberPicker.getValue(); //get weight value what user choose.
-                mDbAdapter.open().insertData("Weight", weight);
+                mDbAdapter.open().insertData("Weight","", weight);
                 mDbAdapter.close();
             }
         });

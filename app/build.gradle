@@ -36,5 +36,6 @@ dependencies {
     compile 'xyz.sahildave:searchviewlayout:0.6' //서치뷰
     compile 'com.github.thorbenprimke:realm-searchview:0.9.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
+    compile 'com.android.volley:volley:1.0.0'
     testCompile 'junit:junit:4.12'
 }

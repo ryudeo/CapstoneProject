@@ -9,7 +9,16 @@ public class FoodInfo{
 
     private String name;
     private int quantity;
-    private String kcal;
+    private String kcal = "0kcal";
+    private String ea;
+
+    public String getEa() {
+        return ea;
+    }
+
+    public void setEa(String ea) {
+        this.ea = ea;
+    }
 
     public String getKcal() {
         return kcal;
