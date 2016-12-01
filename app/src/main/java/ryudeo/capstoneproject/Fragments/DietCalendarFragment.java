@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.github.tibolte.agendacalendarview.AgendaCalendarView;
 import com.github.tibolte.agendacalendarview.CalendarPickerController;
@@ -37,6 +38,8 @@ public class DietCalendarFragment extends Fragment {
     private ViewGroup mContainer;
     private DbAdapter mDbAdapter;
     private Context mContext;
+
+    private Snackbar mSnackbar;
 
 
     public DietCalendarFragment() {
@@ -131,6 +134,8 @@ public class DietCalendarFragment extends Fragment {
                         mDbAdapter.close();
                         snackbar.dismiss();
                         fillEvents(getEvents());
+
+                        Toast.makeText(getActivity(),event.getTitle() + " 삭제되었습니다.", Toast.LENGTH_SHORT).show();
                     }
                 });
                 snackbar.show();

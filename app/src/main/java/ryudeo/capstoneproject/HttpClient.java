@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import okhttp3.OkHttpClient;
 import ryudeo.capstoneproject.Database.FoodInfo;
 
 /**
@@ -36,12 +35,10 @@ public class HttpClient {
     private static final String HEADER_AUTH_VALUE = "MzI1LTE0ODAzNDg5ODk3NjItNjYzYjU1YTItYTdkYi00NWIwLWJiNTUtYTJhN2RiMzViMGM1";
     private static final String HEADER_AUTH_KEY = "x-waple-authorization";
 
-    private OkHttpClient mClient;
     private Context mContext;
 
     public HttpClient(Context context) {
 
-        mClient = new OkHttpClient();
         mContext = context;
     }
 

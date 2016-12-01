@@ -22,8 +22,8 @@
     <color name="colorBlackTransparent">#8c212121</color>
     <color name="colorBlackTransparentOp80">#505c5c5c</color>
 
-    <color name="colorEventWater">#4a6eff</color>
-    <color name="colorEventFood">#e10342</color>
-    <color name="colorEventExercise">#2a816a</color>
+    <color name="colorEventWater">#4e68d2</color>
+    <color name="colorEventFood">#e45880</color>
+    <color name="colorEventExercise">#47a98f</color>
 
 </resources>

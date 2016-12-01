@@ -2,28 +2,16 @@ package ryudeo.capstoneproject.Fragments;
 
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.github.tibolte.agendacalendarview.AgendaCalendarView;
-import com.github.tibolte.agendacalendarview.CalendarPickerController;
-import com.github.tibolte.agendacalendarview.models.CalendarEvent;
-import com.github.tibolte.agendacalendarview.models.DayItem;
-
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Locale;
-
 import ryudeo.capstoneproject.Activities.ExerciseBriefActivity;
 import ryudeo.capstoneproject.Activities.FoodBriefActivity;
 import ryudeo.capstoneproject.Activities.WaterBriefActivity;
-import ryudeo.capstoneproject.Activities.WeightBriefActivity;
+import ryudeo.capstoneproject.Activities.ChartActivity;
 import ryudeo.capstoneproject.R;
 
 
@@ -77,7 +65,8 @@ public class DietBriefingFragment extends Fragment{
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(getActivity(), WeightBriefActivity.class);
+                Intent intent = new Intent(getActivity(), ChartActivity.class);
+                intent.putExtra(ChartActivity.EXTRA_CHART_TYPE, ChartActivity.ChartType.Weight);
                 startActivity(intent);
             }
         });
@@ -86,7 +75,8 @@ public class DietBriefingFragment extends Fragment{
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(getActivity(), WaterBriefActivity.class);
+                Intent intent = new Intent(getActivity(), ChartActivity.class);
+                intent.putExtra(ChartActivity.EXTRA_CHART_TYPE, ChartActivity.ChartType.Water);
                 startActivity(intent);
 
             }
@@ -96,7 +86,8 @@ public class DietBriefingFragment extends Fragment{
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(getActivity(), ExerciseBriefActivity.class);
+                Intent intent = new Intent(getActivity(), ChartActivity.class);
+                intent.putExtra(ChartActivity.EXTRA_CHART_TYPE, ChartActivity.ChartType.Exercise);
                 startActivity(intent);
 
             }
@@ -106,7 +97,8 @@ public class DietBriefingFragment extends Fragment{
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(getActivity(), FoodBriefActivity.class);
+                Intent intent = new Intent(getActivity(), ChartActivity.class);
+                intent.putExtra(ChartActivity.EXTRA_CHART_TYPE, ChartActivity.ChartType.Food);
                 startActivity(intent);
 
             }

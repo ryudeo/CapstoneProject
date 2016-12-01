@@ -9,6 +9,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 import android.util.Log;
 
+import java.util.Calendar;
+
 /**
  * Created by RYU on 2016. 11. 28..
  */
@@ -93,6 +95,81 @@ public class DbAdapter {
     public Cursor fetchData(){
         return mDb.query(DATABASE_TABLE, new String[]{COL_TYPE, COL_QUANTITY, COL_TIMESTAMP}, null, null, null, null, null);
 
+    }
+
+    public Cursor fetchAllFood() {
+
+        String where = COL_TYPE + " = " + "'Food'" + " AND " + COL_TIMESTAMP +" >= " + getStartMills() + " AND " + COL_TIMESTAMP + " <= " + getLastMills();
+
+        return mDb.query(DATABASE_TABLE,
+                new String[]{COL_TYPE, COL_QUANTITY, COL_NAME, COL_TIMESTAMP},
+                where,
+                null,
+                null,
+                null,
+                null);
+    }
+
+    public Cursor fetchAllWater() {
+
+        String where = COL_TYPE + " = " + "'Water'" + " AND " + COL_TIMESTAMP +" >= " + getStartMills() + " AND " + COL_TIMESTAMP + " <= " + getLastMills();
+
+
+
+        return mDb.query(DATABASE_TABLE,
+                new String[]{COL_TYPE, COL_QUANTITY, COL_NAME, COL_TIMESTAMP},
+                where,
+                null,
+                null,
+                null,
+                null);
+    }
+
+    public Cursor fetchAllWeight() {
+
+        String where = COL_TYPE + " = " + "'Weight'" + " AND " + COL_TIMESTAMP +" >= " + getStartMills() + " AND " + COL_TIMESTAMP + " <= " + getLastMills();
+
+        return mDb.query(DATABASE_TABLE,
+                new String[]{COL_TYPE, COL_QUANTITY, COL_NAME, COL_TIMESTAMP},
+                where,
+                null,
+                null,
+                null,
+                null);
+    }
+
+    public Cursor fetchAllExercise() {
+
+        String where = COL_TYPE + " = " + "'Exercise'" + " AND " + COL_TIMESTAMP +" >= " + getStartMills() + " AND " + COL_TIMESTAMP + " <= " + getLastMills();
+
+        return mDb.query(DATABASE_TABLE,
+                new String[]{COL_TYPE, COL_QUANTITY, COL_NAME, COL_TIMESTAMP},
+                where,
+                null,
+                null,
+                null,
+                null);
+    }
+
+    public static long getStartMills() {
+
+        long curMills = System.currentTimeMillis();
+
+        long week = 1000 * 60 * 60 * 24 * 7;
+
+        return curMills - week;
+    }
+
+    public static long getLastMills() {
+
+        long curMills = System.currentTimeMillis();
+        Calendar todayLast = Calendar.getInstance();
+        todayLast.setTimeInMillis(curMills);
+        todayLast.set(Calendar.HOUR, 23);
+        todayLast.set(Calendar.MINUTE, 59);
+        todayLast.set(Calendar.SECOND, 59);
+
+        return todayLast.getTimeInMillis();
     }
 }
 

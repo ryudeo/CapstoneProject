@@ -1,25 +1,27 @@
 package ryudeo.capstoneproject.Activities;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
-import com.github.tibolte.agendacalendarview.models.BaseCalendarEvent;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 
 import ryudeo.capstoneproject.Adapters.TabPagerAdapter;
+import ryudeo.capstoneproject.Database.DbAdapter;
 import ryudeo.capstoneproject.Fragments.DietBriefingFragment;
 import ryudeo.capstoneproject.Fragments.DietCalendarFragment;
 import ryudeo.capstoneproject.R;
-import ryudeo.capstoneproject.Utils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,7 +37,46 @@ public class MainActivity extends AppCompatActivity {
         setUpFloatingActionButton();
 
 
+//        DbAdapter dbAdapter = new DbAdapter(this);
+//
+//        Cursor foodCursor = dbAdapter.open().fetchAllFood();
+//        Cursor waterCursor = dbAdapter.open().fetchAllWater();
+//        Cursor weightCursor = dbAdapter.open().fetchAllWeight();
+//        Cursor exerciseCursor = dbAdapter.open().fetchAllExercise();
+//
+//        log(foodCursor);
+//        log(waterCursor);
+//        log(weightCursor);
+//        log(exerciseCursor);
 
+    }
+
+    private void log(Cursor cursor) {
+
+        if (cursor != null) {
+
+            while (cursor.moveToNext()) {
+
+                long timeStamp = cursor.getLong(cursor.getColumnIndex(DbAdapter.COL_TIMESTAMP));
+                String name = cursor.getString(cursor.getColumnIndex(DbAdapter.COL_NAME));
+                int quantity = cursor.getInt(cursor.getColumnIndex(DbAdapter.COL_QUANTITY));
+                String type = cursor.getString(cursor.getColumnIndex(DbAdapter.COL_TYPE));
+
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTimeInMillis(timeStamp);
+
+                int month = calendar.get(Calendar.MONTH) + 1;
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+                int hour = calendar.get(Calendar.HOUR);
+                int seconds = calendar.get(Calendar.MINUTE);
+
+                Log.i("Cursor log : ", "Type : " + type + "\n" +
+                        "Name : " + name + "\n" +
+                        "Quantity : " + quantity+ "\n" +
+                "TimeStamp : " + month+"."+day+","+hour+":"+seconds);
+            }
+        }
+        cursor.close();
     }
 
     @Override
@@ -72,6 +113,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void setUpFloatingActionButton() {
 
+        final FloatingActionsMenu actionsMenu = (FloatingActionsMenu)findViewById(R.id.multiple_actions);
+
+
+
         FloatingActionButton actionWeight = (FloatingActionButton)findViewById(R.id.action_weight);
         FloatingActionButton actionWater = (FloatingActionButton)findViewById(R.id.action_water);
         FloatingActionButton actionExercise = (FloatingActionButton)findViewById(R.id.action_exercise);
@@ -81,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                actionsMenu.collapse();
                 Intent intent = new Intent(MainActivity.this, FabWeightActivity.class);
                 startActivity(intent);
             }
@@ -90,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                actionsMenu.collapse();
                 Intent intent = new Intent(MainActivity.this, FabWaterActivity.class);
                 startActivity(intent);
 
@@ -100,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                actionsMenu.collapse();
                 Intent intent = new Intent(MainActivity.this, FabExerciseActivity.class);
                 startActivity(intent);
 
@@ -110,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                actionsMenu.collapse();
                 Intent intent = new Intent(MainActivity.this, FabFoodActivity.class);
                 startActivity(intent);
 

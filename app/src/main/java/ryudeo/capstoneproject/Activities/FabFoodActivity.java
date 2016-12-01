@@ -49,7 +49,7 @@ public class FabFoodActivity extends AppCompatActivity {
 
                 FoodInfo foodInfo = mFoodInfos.get(position);
                 new DbAdapter(getApplicationContext()).open().insertData("Food", foodInfo.getName(), foodInfo.getQuantity());
-                Toast.makeText(getApplicationContext(), foodInfo.getName() + " 쿰척쿰척 먹었당~", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), foodInfo.getName() + " 냠냠~~", Toast.LENGTH_SHORT).show();
 
             }
         });

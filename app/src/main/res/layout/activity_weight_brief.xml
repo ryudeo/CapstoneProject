@@ -1,51 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="ryudeo.capstoneproject.Activities.WeightBriefActivity">
+    tools:context="ryudeo.capstoneproject.Activities.ChartActivity">
 
-
-    <LinearLayout
-        android:orientation="vertical"
+    <TextView
+        android:id="@+id/textview_type"
+        android:text="몸무게 변화량"
+        android:textStyle="bold"
+        android:padding="16dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"/>
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:id="@+id/TopFrame">
 
-            <TextView
-                android:text="Weight Brief Activity"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/textView8" />
-        </FrameLayout>
+    <lecho.lib.hellocharts.view.LineChartView
+        android:id="@+id/chart_top"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+    </lecho.lib.hellocharts.view.LineChartView>
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="350dp"
-            android:id="@+id/MidFrame">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/darker_gray" />
 
-            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:id="@+id/container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context="lecho.lib.hellocharts.samples.LineChartActivity"
-                tools:ignore="MergeRootFrame" />
+    <lecho.lib.hellocharts.view.ColumnChartView
+        android:id="@+id/chart_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+    </lecho.lib.hellocharts.view.ColumnChartView>
 
-        </FrameLayout>
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/BottomFrame">
-
-        </FrameLayout>
-    </LinearLayout>
-</android.support.design.widget.CoordinatorLayout>
+</LinearLayout>

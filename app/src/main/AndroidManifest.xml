@@ -16,7 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.WeightBriefActivity" />
+        <activity android:name=".Activities.ChartActivity" />
         <activity android:name=".Activities.WaterBriefActivity" />
         <activity android:name=".Activities.ExerciseBriefActivity" />
         <activity android:name=".Activities.FoodBriefActivity" />
