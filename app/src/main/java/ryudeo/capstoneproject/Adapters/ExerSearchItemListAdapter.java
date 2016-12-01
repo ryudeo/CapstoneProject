@@ -49,7 +49,7 @@ public class ExerSearchItemListAdapter extends RecyclerView.Adapter<ExerSearchIt
         ExerInfo exerInfo = mExerInfoList.get(position);
 
         holder.cardTitleTextView.setText(exerInfo.getName());
-        holder.cardDetailsTextView.setText(exerInfo.getQuantity());
+        holder.cardDetailsTextView.setText(String.valueOf(exerInfo.getQuantity()) + "(" + "Kcal/30min" + ")");
     }
 
     public int getItemCount() {

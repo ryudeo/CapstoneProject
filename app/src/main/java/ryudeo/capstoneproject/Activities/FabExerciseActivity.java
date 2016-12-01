@@ -35,7 +35,7 @@ public class FabExerciseActivity extends AppCompatActivity {
 
         setUpLayout();
         setUpViews();
-        setUpExerList();
+        init();
     }
 
     public void setUpViews() {
@@ -105,7 +105,7 @@ public class FabExerciseActivity extends AppCompatActivity {
 
     }
 
-    public void setUpExerList() {
+    public void init() {
         mExerInfosAll.add(new ExerInfo("산책", 66));
         mExerInfosAll.add(new ExerInfo("자전거타기(보통속도)", 93));
         mExerInfosAll.add(new ExerInfo("자전거타기(빠른속도)", 111));
