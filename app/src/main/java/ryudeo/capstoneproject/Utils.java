@@ -114,6 +114,10 @@ public class Utils {
         if (eventType == EventType.Food) {
 
             title = name;
+        } else if (eventType == EventType.Exercise) {
+            title = name;
+        } else if (eventType == EventType.Water) {
+            title = "물";
         }
 
         return new BaseCalendarEvent(title, desc, desc, color, startTime, startTime, true);

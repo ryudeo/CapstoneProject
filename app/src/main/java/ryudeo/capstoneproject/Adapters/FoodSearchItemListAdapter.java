@@ -5,8 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -23,8 +21,6 @@ public class FoodSearchItemListAdapter extends RecyclerView.Adapter<FoodSearchIt
     private Context mContext;
     private ArrayList<FoodInfo> mFoodInfoList;
     private ListItemClickCallback mListItemClickCallback;
-
-    private int lastPosition = -1;
 
     public void setListItemClickCallback(ListItemClickCallback listItemClickCallback) {
         mListItemClickCallback = listItemClickCallback;
@@ -80,17 +76,6 @@ public class FoodSearchItemListAdapter extends RecyclerView.Adapter<FoodSearchIt
                     }
                 }
             });
-        }
-    }
-
-    private void setAnimation(View viewToAnimate, int position)
-    {
-        // 새로 보여지는 뷰라면 애니메이션을 해줍니다
-        if (position > lastPosition)
-        {
-            Animation animation = AnimationUtils.loadAnimation(mContext, android.R.anim.slide_in_left);
-            viewToAnimate.startAnimation(animation);
-            lastPosition = position;
         }
     }
 

@@ -1,8 +1,10 @@
 package ryudeo.capstoneproject.Fragments;
 
 
+import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +34,9 @@ import ryudeo.capstoneproject.Utils;
 public class DietCalendarFragment extends Fragment {
 
     private AgendaCalendarView mAgenda;
+    private ViewGroup mContainer;
+    private DbAdapter mDbAdapter;
+    private Context mContext;
 
 
     public DietCalendarFragment() {
@@ -50,6 +55,8 @@ public class DietCalendarFragment extends Fragment {
         if (getArguments() != null) {
 
         }
+
+
     }
 
     @Override
@@ -59,6 +66,7 @@ public class DietCalendarFragment extends Fragment {
         if (mAgenda != null) {
 
             fillEvents(getEvents());
+
         }
     }
 
@@ -67,6 +75,7 @@ public class DietCalendarFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_diet_calendar, container, false);
+        mContainer = (ViewGroup)rootView.findViewById(R.id.container);
         setUpCalendar(rootView);
 
 
@@ -82,6 +91,8 @@ public class DietCalendarFragment extends Fragment {
     }
 
     private void fillEvents(List<CalendarEvent> events) {
+
+        mContext = this.getActivity();
 
         Calendar minDate = Calendar.getInstance();
         Calendar maxDate = Calendar.getInstance();
@@ -99,7 +110,30 @@ public class DietCalendarFragment extends Fragment {
             }
 
             @Override
-            public void onEventSelected(CalendarEvent event) {
+            public void onEventSelected(final CalendarEvent event) {
+
+                final Snackbar snackbar = Snackbar.make(mContainer, event.getTitle(), Snackbar.LENGTH_INDEFINITE);
+
+                snackbar.setAction("취소", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        snackbar.dismiss();
+                    }
+                });
+
+                snackbar.setAction("삭제", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        mDbAdapter = new DbAdapter(mContext);
+                        mDbAdapter.open().deleteData(event.getStartTime().getTimeInMillis());
+                        mDbAdapter.close();
+                        snackbar.dismiss();
+                        fillEvents(getEvents());
+                    }
+                });
+                snackbar.show();
 
             }
 
@@ -109,6 +143,9 @@ public class DietCalendarFragment extends Fragment {
             }
         });
     }
+
+
+
 
     private List<CalendarEvent> getEvents() {
 
@@ -129,8 +166,7 @@ public class DietCalendarFragment extends Fragment {
             colsList.add(new Cols(type, quantity, timeStamp)); //레코드 어레이리스트에 추가
             event = Utils.makeBaseCalendarEvent(getActivity(), Utils.EventType.valueOf(type), name, quantity, timeStamp); //이벤트 생성
 
-
-            if (!(type == "Weight")) { //Weight type 제외
+            if (!(event.getTitle() == "Weight")) { //Weight type 제외
                 eventList.add(event); //이벤트 어레이리스트에 추가
             }
         }
@@ -138,5 +174,7 @@ public class DietCalendarFragment extends Fragment {
 
         return eventList;
     }
+
+
 
 }

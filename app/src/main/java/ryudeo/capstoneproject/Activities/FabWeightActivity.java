@@ -25,7 +25,6 @@ public class FabWeightActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fab_weight);
 
-        //colsList = new ArrayList<Cols>();
         mDbAdapter = new DbAdapter(this);
 
         final NumberPicker numberPicker = (NumberPicker) findViewById(R.id.weight_number_picker);

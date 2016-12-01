@@ -80,6 +80,11 @@ public class DbAdapter {
         return mDb.insert(DATABASE_TABLE, null, values);
     }
 
+    public void deleteData(long timeStamp) {
+        ContentValues values = new ContentValues();
+        mDb.execSQL("DELETE FROM daily WHERE timeStamp = " + timeStamp);
+    }
+
     public Cursor fetchAll(){
         return mDb.query(DATABASE_TABLE, new String[]{COL_ROWID, COL_TYPE, COL_NAME, COL_QUANTITY, COL_TIMESTAMP}, null, null, null, null, null);
 
