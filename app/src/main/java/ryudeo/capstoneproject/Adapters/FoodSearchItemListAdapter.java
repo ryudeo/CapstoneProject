@@ -10,7 +10,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 import ryudeo.capstoneproject.Database.FoodInfo;
 import ryudeo.capstoneproject.R;
@@ -19,7 +18,7 @@ import ryudeo.capstoneproject.R;
  * Created by RYU on 2016. 11. 29..
  */
 
-public class SearchItemListAdapter extends RecyclerView.Adapter<SearchItemListAdapter.SearchItemViewHolder>
+public class FoodSearchItemListAdapter extends RecyclerView.Adapter<FoodSearchItemListAdapter.SearchItemViewHolder>
 {
     private Context mContext;
     private ArrayList<FoodInfo> mFoodInfoList;
@@ -35,7 +34,7 @@ public class SearchItemListAdapter extends RecyclerView.Adapter<SearchItemListAd
         mFoodInfoList = foodInfoList;
     }
 
-    public SearchItemListAdapter(ArrayList<FoodInfo> items, Context mContext)
+    public FoodSearchItemListAdapter(ArrayList<FoodInfo> items, Context mContext)
     {
         this.mContext = mContext;
         this.mFoodInfoList = items;

@@ -1,25 +1,20 @@
 package ryudeo.capstoneproject.Activities;
 
 import android.graphics.drawable.ColorDrawable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
-import ryudeo.capstoneproject.Adapters.SearchItemListAdapter;
+import ryudeo.capstoneproject.Adapters.FoodSearchItemListAdapter;
 import ryudeo.capstoneproject.Database.DbAdapter;
 import ryudeo.capstoneproject.Database.FoodInfo;
 import ryudeo.capstoneproject.Fragments.SearchStaticRecyclerFragment;
@@ -31,7 +26,7 @@ import xyz.sahildave.widget.SearchViewLayout;
 public class FabFoodActivity extends AppCompatActivity {
 
     private ArrayList<FoodInfo> mFoodInfos = new ArrayList<>();
-    private SearchItemListAdapter mSearchItemListAdapter;
+    private FoodSearchItemListAdapter mFoodSearchItemListAdapter;
     private RecyclerView mRecyclerView;
     private ProgressBar mProgressBar;
     private TextView mEmptyTextView;
@@ -47,8 +42,8 @@ public class FabFoodActivity extends AppCompatActivity {
 
     private void setUpViews() {
 
-        mSearchItemListAdapter = new SearchItemListAdapter(mFoodInfos, this);
-        mSearchItemListAdapter.setListItemClickCallback(new SearchItemListAdapter.ListItemClickCallback() {
+        mFoodSearchItemListAdapter = new FoodSearchItemListAdapter(mFoodInfos, this);
+        mFoodSearchItemListAdapter.setListItemClickCallback(new FoodSearchItemListAdapter.ListItemClickCallback() {
             @Override
             public void onItemClick(int position) {
 
@@ -60,7 +55,7 @@ public class FabFoodActivity extends AppCompatActivity {
         });
         mRecyclerView = ((RecyclerView) findViewById(R.id.search_static_recycler));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.setAdapter(mSearchItemListAdapter);
+        mRecyclerView.setAdapter(mFoodSearchItemListAdapter);
 
 
         mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
@@ -89,8 +84,8 @@ public class FabFoodActivity extends AppCompatActivity {
 
                 dismissProgressBar();
                 mFoodInfos = foodInfos;
-                mSearchItemListAdapter.setFoodInfoList(mFoodInfos);
-                mSearchItemListAdapter.notifyDataSetChanged();
+                mFoodSearchItemListAdapter.setFoodInfoList(mFoodInfos);
+                mFoodSearchItemListAdapter.notifyDataSetChanged();
 
                 if (mFoodInfos.isEmpty()) mEmptyTextView.setVisibility(View.VISIBLE);
                 else mEmptyTextView.setVisibility(View.GONE);

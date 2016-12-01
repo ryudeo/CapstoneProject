@@ -8,19 +8,23 @@
     android:fitsSystemWindows="true"
     tools:context="ryudeo.capstoneproject.Activities.FabFoodActivity">
 
-    <FrameLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <include layout="@layout/content_main"/>
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:theme="@style/AppTheme.AppBarOverlay">
 
-        <co.moonmonkeylabs.realmsearchview.RealmSearchView
-            android:id="@+id/search_view"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            app:title="운동 검색"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:rsvHint="@string/search_hint"
-            />
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
-    </FrameLayout>
+        <include layout="@layout/widget_search_bar"/>
+
+    </android.support.design.widget.AppBarLayout>
 
 </android.support.design.widget.CoordinatorLayout>

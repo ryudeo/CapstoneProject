@@ -5,7 +5,7 @@ package ryudeo.capstoneproject.Database;
  * Created by RYU on 2016. 11. 29..
  */
 
-public class FoodInfo{
+public class FoodInfo {
 
     private String name;
     private int quantity;
