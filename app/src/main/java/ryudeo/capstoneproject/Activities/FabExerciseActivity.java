@@ -97,6 +97,9 @@ public class FabExerciseActivity extends AppCompatActivity {
             }
         }
 
+        mExerSearchItemListAdapter.setExerInfoList(mExerInfosResult);
+        mExerSearchItemListAdapter.notifyDataSetChanged();
+
         if(mExerInfosResult.isEmpty()) mEmptyTextView.setVisibility(View.VISIBLE);
         else mEmptyTextView.setVisibility(View.GONE);
 
